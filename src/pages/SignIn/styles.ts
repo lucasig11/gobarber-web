@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import logInBackground from '../../assets/login-background.png';
@@ -9,14 +9,38 @@ export const Container = styled.div`
 	align-items: stretch;
 `;
 
+export const Background = styled.div`
+	flex: 1;
+	background: url(${logInBackground}) no-repeat center;
+	background-size: cover;
+`;
+
 export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	place-content: center;
 	width: 100%;
 	max-width: 700px;
-	align-items: center;
+`;
 
+const slideFromLeft = keyframes`
+	from {
+		opacity: 0;
+		transform: translateX(-80px);
+	} to {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+`;
+
+export const AnimationContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	place-content: center;
+
+	animation: ${slideFromLeft} 1s;
 	form {
 		margin: 80px 0;
 		width: 340px;
@@ -56,10 +80,4 @@ export const Content = styled.div`
 			color: ${shade(0.2, '#ff9000')};
 		}
 	}
-`;
-
-export const Background = styled.div`
-	flex: 1;
-	background: url(${logInBackground}) no-repeat center;
-	background-size: cover;
 `;
