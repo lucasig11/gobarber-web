@@ -2,8 +2,10 @@ import React from 'react';
 import { FiPower } from 'react-icons/fi';
 
 import { Container, Header, HeaderContent, Profile } from './styles';
-import logo from '../../assets/logo.svg';
 import { useAuth } from '../../hooks/auth';
+
+import logo from '../../assets/logo.svg';
+import defaultAvatar from '../../assets/avatar_gobarber.png';
 
 const Dashboard: React.FC = () => {
 	const { signOut, user } = useAuth();
@@ -16,10 +18,7 @@ const Dashboard: React.FC = () => {
 
 					<Profile>
 						<img
-							src={
-								user.avatar_url ||
-								'https://www.pngkey.com/png/detail/308-3081138_contact-avatar-generic.png'
-							}
+							src={user.avatar_url || defaultAvatar}
 							alt={user.name}
 						/>
 						<div>
