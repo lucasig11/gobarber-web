@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import DayPicker, { DayModifiers } from 'react-day-picker';
+import { format, isToday } from 'date-fns';
+
+import ptBR from 'date-fns/locale/pt-BR';
+
 import 'react-day-picker/lib/style.css';
 
 import { FiClock, FiPower } from 'react-icons/fi';
@@ -73,6 +77,19 @@ const Dashboard: React.FC = () => {
 		return dates;
 	}, [selectedMonth, monthAvailability]);
 
+	const parsedDay = useMemo(
+		() => format(selectedDate, "'Dia' dd 'de' MMMM", { locale: ptBR }),
+		[selectedDate],
+	);
+
+	const parsedWeekDay = useMemo(
+		() =>
+			format(selectedDate, 'cccc', {
+				locale: ptBR,
+			}),
+		[selectedDate],
+	);
+
 	return (
 		<Container>
 			<Header>
@@ -101,9 +118,9 @@ const Dashboard: React.FC = () => {
 					<h1>Horários agendados</h1>
 
 					<p>
-						<span>Hoje</span>
-						<span>Dia 06</span>
-						<span>Segunda-feira</span>
+						{isToday(selectedDate) && <span>Hoje</span>}
+						<span>{parsedDay}</span>
+						<span>{parsedWeekDay}</span>
 					</p>
 
 					<NextAppointment>
