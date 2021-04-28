@@ -13,6 +13,7 @@ export default createGlobalStyle`
         background: #312e38;
         color: #fff;
         -webkit-font-smoothing: antialiased;
+        overflow: overlay;
     }
 
     body, input, button {
@@ -26,5 +27,27 @@ export default createGlobalStyle`
 
 	button {
 		cursor: pointer;
+	}
+
+    /* width */
+	::-webkit-scrollbar {
+		width: 10px;
+		border-radius: 30px;
+        margin-right: 10px;
+	}
+   
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-button {
+        height: 10px; //for vertical scrollbar
+    }
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: rgba(100, 100, 100, 0.4);
 	}
 `;
