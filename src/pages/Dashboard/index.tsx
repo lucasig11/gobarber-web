@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import { format, isToday, parseISO, isAfter } from 'date-fns';
 import { FiClock, FiPower } from 'react-icons/fi';
@@ -11,7 +12,7 @@ import 'react-day-picker/lib/style.css';
 
 import api from '../../services/apiClient';
 import { useAuth } from '../../hooks/auth';
-
+import { Appointment, MonthAvailabilityItem } from '../../common/types';
 import AppointmentsList from '../../components/AppointmentsList';
 
 import logo from '../../assets/logo.svg';
@@ -28,21 +29,6 @@ import {
 	Section,
 	Calendar,
 } from './styles';
-
-interface MonthAvailabilityItem {
-	day: number;
-	available: boolean;
-}
-
-interface Appointment {
-	id: string;
-	date: string;
-	formattedHour: string;
-	user: {
-		name: string;
-		avatar_url: string;
-	};
-}
 
 const Dashboard: React.FC = () => {
 	const { user, signOut } = useAuth();
@@ -103,7 +89,6 @@ const Dashboard: React.FC = () => {
 					},
 				);
 				setAppointments(formattedAppointments);
-				console.log(response.data);
 			})
 			.finally(() => {
 				setLoading(false);
@@ -168,7 +153,9 @@ const Dashboard: React.FC = () => {
 						/>
 						<div>
 							<span>Bem-vindo,</span>
-							<strong>{user.name}</strong>
+							<Link to="/profile">
+								<strong>{user.name}</strong>
+							</Link>
 						</div>
 					</Profile>
 

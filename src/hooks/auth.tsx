@@ -1,21 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import api from '../services/apiClient';
-
-interface User {
-	id: string;
-	avatar_url: string;
-	name: string;
-}
-
-interface AuthState {
-	token: string;
-	user: User;
-}
-
-interface Credentials {
-	email: string;
-	password: string;
-}
+import { User, AuthState, Credentials } from '../common/types';
 
 interface AuthContextData {
 	user: User;
