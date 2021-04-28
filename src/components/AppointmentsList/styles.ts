@@ -1,3 +1,4 @@
+import { lighten } from 'polished';
 import styled from 'styled-components';
 
 export const Appointment = styled.div`
@@ -49,17 +50,18 @@ export const AppointmentInfo = styled.div`
 			margin-left: 24px;
 			font-size: 18px;
 			color: #fff;
+			border-bottom: 2px solid ${lighten(0.1, '#3e3b47')};
 		}
 
 		p {
 			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 				Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
 				sans-serif;
-			font-weight: lighter;
-			margin: 0 auto auto 24px;
+			font-weight: 600;
+			margin: 5px auto auto 24px;
 			justify-content: left;
 			font-size: 12px;
-			color: #f4ede8;
+			color: ${lighten(0.4, '#3e3b47')};
 		}
 	}
 `;
