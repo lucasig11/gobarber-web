@@ -43,14 +43,24 @@ export const AppointmentInfo = styled.div`
 		flex-direction: column;
 		align-content: left;
 
+		button {
+			background: none;
+			border: 0;
+			/* position: absolute; */
+		}
 		strong {
 			margin: auto;
 			text-align: left;
 			padding: 5px 0;
+			width: 100%;
 			margin-left: 24px;
 			font-size: 18px;
 			color: #fff;
 			border-bottom: 2px solid ${lighten(0.1, '#3e3b47')};
+
+			&:hover {
+				color: #ff9000;
+			}
 		}
 
 		p {

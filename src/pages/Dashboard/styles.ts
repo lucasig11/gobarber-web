@@ -56,12 +56,14 @@ export const Profile = styled.div`
 			color: #f4ede8;
 		}
 
-		a {
-			text-decoration: none;
-			color: #ff9000;
+		button {
+			strong {
+				text-decoration: none;
+				color: #ff9000;
 
-			&:hover {
-				opacity: 0.8;
+				&:hover {
+					opacity: 0.8;
+				}
 			}
 		}
 	}

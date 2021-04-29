@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import { format, isToday, parseISO, isAfter } from 'date-fns';
 import { FiClock, FiPower } from 'react-icons/fi';
@@ -29,9 +28,12 @@ import {
 	Section,
 	Calendar,
 } from './styles';
+import { usePopup } from '../../hooks/popup';
 
 const Dashboard: React.FC = () => {
 	const { user, signOut } = useAuth();
+	const { openPopup } = usePopup();
+
 	// States
 	const [isLoading, setLoading] = useState(false);
 	const [selectedDate, setSelectedDate] = useState(new Date());
@@ -141,109 +143,118 @@ const Dashboard: React.FC = () => {
 	}, [appointments]);
 
 	return (
-		<Container>
-			<Header>
-				<HeaderContent>
-					<img src={logo} alt="GoBarber" />
+		<>
+			<Container>
+				<Header>
+					<HeaderContent>
+						<img src={logo} alt="GoBarber" />
 
-					<Profile>
-						<img
-							src={user.avatar_url || defaultAvatar}
-							alt={user.name}
+						<Profile>
+							<img
+								src={user.avatar_url || defaultAvatar}
+								alt={user.name}
+							/>
+							<div>
+								<span>Bem-vindo,</span>
+								<button
+									type="button"
+									onClick={() => openPopup({ user })}
+								>
+									<strong>{user.name}</strong>
+								</button>
+							</div>
+						</Profile>
+
+						<button type="button" onClick={signOut}>
+							<FiPower />
+						</button>
+					</HeaderContent>
+				</Header>
+
+				<Content>
+					<Schedule>
+						<h1>Horários agendados</h1>
+						<p>
+							{isToday(selectedDate) && <span>Hoje</span>}
+							<span>{parsedDay}</span>
+							<span>{parsedWeekDay}</span>
+						</p>
+
+						{isLoading ? (
+							<Spinner animation="border" variant="secondary" />
+						) : (
+							<>
+								{isToday(selectedDate) && nextAppointment && (
+									<NextAppointment>
+										<strong>Próximo agendamento</strong>
+										<div>
+											<img
+												src={
+													nextAppointment.user
+														.avatar_url ||
+													defaultAvatar
+												}
+												alt={nextAppointment.user.name}
+											/>
+											<strong>
+												{nextAppointment.user.name}
+											</strong>
+
+											<span>
+												<FiClock />
+												{nextAppointment.formattedHour}
+											</span>
+										</div>
+									</NextAppointment>
+								)}
+
+								<Section>
+									<AppointmentsList
+										appointments={morningAppointments}
+										title="Manhã"
+									/>
+
+									<AppointmentsList
+										appointments={afternoonAppointments}
+										title="Tarde"
+									/>
+								</Section>
+							</>
+						)}
+					</Schedule>
+					<Calendar>
+						<DayPicker
+							weekdaysShort={['D', 'S', 'T', 'Q', 'Q', 'S', 'S']}
+							fromMonth={new Date()}
+							disabledDays={[
+								{ daysOfWeek: [0, 6] },
+								...disabledDays,
+							]}
+							modifiers={{
+								available: { daysOfWeek: [1, 2, 3, 4, 5] },
+							}}
+							selectedDays={selectedDate}
+							onDayClick={handleDayChange}
+							onMonthChange={handleMonthChange}
+							months={[
+								'Janeiro',
+								'Fevereiro',
+								'Março',
+								'Abril',
+								'Maio',
+								'Junho',
+								'Julho',
+								'Agosto',
+								'Setembro',
+								'Outubro',
+								'Novembro',
+								'Dezembro',
+							]}
 						/>
-						<div>
-							<span>Bem-vindo,</span>
-							<Link to="/profile">
-								<strong>{user.name}</strong>
-							</Link>
-						</div>
-					</Profile>
-
-					<button type="button" onClick={signOut}>
-						<FiPower />
-					</button>
-				</HeaderContent>
-			</Header>
-
-			<Content>
-				<Schedule>
-					<h1>Horários agendados</h1>
-					<p>
-						{isToday(selectedDate) && <span>Hoje</span>}
-						<span>{parsedDay}</span>
-						<span>{parsedWeekDay}</span>
-					</p>
-
-					{isLoading ? (
-						<Spinner animation="border" variant="secondary" />
-					) : (
-						<>
-							{isToday(selectedDate) && nextAppointment && (
-								<NextAppointment>
-									<strong>Próximo agendamento</strong>
-									<div>
-										<img
-											src={
-												nextAppointment.user
-													.avatar_url || defaultAvatar
-											}
-											alt={nextAppointment.user.name}
-										/>
-										<strong>
-											{nextAppointment.user.name}
-										</strong>
-
-										<span>
-											<FiClock />
-											{nextAppointment.formattedHour}
-										</span>
-									</div>
-								</NextAppointment>
-							)}
-
-							<Section>
-								<AppointmentsList
-									appointments={morningAppointments}
-									title="Manhã"
-								/>
-
-								<AppointmentsList
-									appointments={afternoonAppointments}
-									title="Tarde"
-								/>
-							</Section>
-						</>
-					)}
-				</Schedule>
-				<Calendar>
-					<DayPicker
-						weekdaysShort={['D', 'S', 'T', 'Q', 'Q', 'S', 'S']}
-						fromMonth={new Date()}
-						disabledDays={[{ daysOfWeek: [0, 6] }, ...disabledDays]}
-						modifiers={{
-							available: { daysOfWeek: [1, 2, 3, 4, 5] },
-						}}
-						selectedDays={selectedDate}
-						onDayClick={handleDayChange}
-						onMonthChange={handleMonthChange}
-						months={[
-							'Janeiro',
-							'Fevereiro',
-							'Março',
-							'Abril',
-							'Maio',
-							'Junho',
-							'Julho',
-							'Agosto',
-							'Setembro',
-							'Outubro',
-							'Novembro',
-							'Dezembro',
-						]}
-					/>
-				</Calendar>
-			</Content>
-		</Container>
+					</Calendar>
+				</Content>
+			</Container>
+		</>
 	);
 };
 

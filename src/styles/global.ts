@@ -31,7 +31,6 @@ export default createGlobalStyle`
 
     /* width */
 	::-webkit-scrollbar {
-		width: 10px;
 		border-radius: 30px;
         margin-right: 10px;
 	}
@@ -40,10 +39,6 @@ export default createGlobalStyle`
     ::-webkit-scrollbar-thumb {
         background-color: rgba(0, 0, 0, 0.4);
         border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-button {
-        height: 10px; //for vertical scrollbar
     }
 
 	/* Handle on hover */
