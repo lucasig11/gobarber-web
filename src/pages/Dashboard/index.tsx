@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import { format, isToday, parseISO, isAfter } from 'date-fns';
 import { FiClock, FiPower } from 'react-icons/fi';
+import { BsFillPersonFill } from 'react-icons/bs';
 
 import Spinner from 'react-bootstrap/Spinner';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -9,6 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-day-picker/lib/style.css';
 
+import { Link } from 'react-router-dom';
 import api from '../../services/apiClient';
 import { useAuth } from '../../hooks/auth';
 import { Appointment, MonthAvailabilityItem } from '../../common/types';
@@ -165,9 +167,15 @@ const Dashboard: React.FC = () => {
 							</div>
 						</Profile>
 
-						<button type="button" onClick={signOut}>
-							<FiPower />
-						</button>
+						<div>
+							<Link to="/providers">
+								<BsFillPersonFill />
+							</Link>
+
+							<button type="button" onClick={signOut}>
+								<FiPower />
+							</button>
+						</div>
 					</HeaderContent>
 				</Header>
 

@@ -19,6 +19,7 @@ export const Container = styled.div`
 		flex-direction: row;
 		align-items: center;
 		align-content: space-between;
+		text-transform: capitalize;
 
 		::-webkit-scrollbar {
 			height: 10px;

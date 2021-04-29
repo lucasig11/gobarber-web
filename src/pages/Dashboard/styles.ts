@@ -18,13 +18,20 @@ export const HeaderContent = styled.div`
 		height: 80px;
 	}
 
-	button {
+	div + div {
+		display: flex;
+		flex-direction: row;
+		align-items: right;
 		margin-left: auto;
+	}
+	button,
+	a {
 		background: transparent;
 		border: 0;
 
 		svg {
 			color: #999591;
+			margin-left: 20px;
 			width: 20px;
 			height: 20px;
 
@@ -49,6 +56,7 @@ export const Profile = styled.div`
 	div {
 		display: flex;
 		flex-direction: column;
+		align-items: flex-end;
 		margin-left: 16px;
 		line-height: 24px;
 
