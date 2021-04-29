@@ -4,10 +4,7 @@ export interface Appointment {
 	id: string;
 	date: string;
 	formattedHour: string;
-	user: {
-		name: string;
-		avatar_url: string;
-	};
+	user: User;
 	created_at: string;
 }
 
@@ -18,6 +15,10 @@ export interface IAppointmentsProps {
 
 export interface MonthAvailabilityItem {
 	day: number;
+	available: boolean;
+}
+export interface DayAvailabilityItem {
+	hour: number;
 	available: boolean;
 }
 
