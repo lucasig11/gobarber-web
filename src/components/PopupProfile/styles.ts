@@ -46,6 +46,7 @@ export const ProfileContainer = styled.div`
 	::-webkit-scrollbar {
 		width: 10px;
 	}
+
 	> div {
 		width: 100%;
 		height: 10px;
@@ -134,8 +135,8 @@ export const ProfileContainer = styled.div`
 	}
 
 	h5 {
-		font-size: 18px;
-		margin: 50px;
+		font-size: 16px;
+		margin: 30px;
 		opacity: 0.5;
 	}
 `;
