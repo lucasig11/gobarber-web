@@ -17,7 +17,9 @@ const Header: React.FC = () => {
 	return (
 		<Container>
 			<HeaderContent>
-				<img src={logo} alt="GoBarber" />
+				<Link to="/">
+					<img src={logo} alt="GoBarber" />
+				</Link>
 
 				<Profile>
 					<img
