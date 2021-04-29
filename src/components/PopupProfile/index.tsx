@@ -48,7 +48,6 @@ const PopupProfile: React.FC<PopupProfileProps> = ({
 
 	const handleMonthChange = useCallback((selectedItem, key) => {
 		setSelectedMonth(key);
-		// console.log(selectedItem, key, monthAvailability);
 	}, []);
 
 	const handleYearChange = useCallback((selectedItem, key) => {
@@ -146,7 +145,7 @@ const PopupProfile: React.FC<PopupProfileProps> = ({
 						<FiArrowLeft />
 					</button>
 
-					{userInfo?.id === user.id && (
+					{user && userInfo && userInfo?.id === user.id && (
 						<Link to="/profile" onClick={closePopup}>
 							<p>Editar perfil</p>
 							<TiPencil />
