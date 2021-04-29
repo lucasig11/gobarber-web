@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import { format, isToday, parseISO, isAfter } from 'date-fns';
-import { FiClock, FiPower } from 'react-icons/fi';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { FiClock } from 'react-icons/fi';
 
 import Spinner from 'react-bootstrap/Spinner';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -10,31 +9,25 @@ import ptBR from 'date-fns/locale/pt-BR';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-day-picker/lib/style.css';
 
-import { Link } from 'react-router-dom';
 import api from '../../services/apiClient';
 import { useAuth } from '../../hooks/auth';
 import { Appointment, MonthAvailabilityItem } from '../../common/types';
 import AppointmentsList from '../../components/AppointmentsList';
+import Header from '../../components/Header';
 
-import logo from '../../assets/logo.svg';
 import defaultAvatar from '../../assets/avatar_gobarber.png';
 
 import {
 	Container,
-	Header,
-	HeaderContent,
-	Profile,
 	Content,
 	Schedule,
 	NextAppointment,
 	Section,
 	Calendar,
 } from './styles';
-import { usePopup } from '../../hooks/popup';
 
 const Dashboard: React.FC = () => {
-	const { user, signOut } = useAuth();
-	const { openPopup } = usePopup();
+	const { user } = useAuth();
 
 	// States
 	const [isLoading, setLoading] = useState(false);
@@ -147,37 +140,7 @@ const Dashboard: React.FC = () => {
 	return (
 		<>
 			<Container>
-				<Header>
-					<HeaderContent>
-						<img src={logo} alt="GoBarber" />
-
-						<Profile>
-							<img
-								src={user.avatar_url || defaultAvatar}
-								alt={user.name}
-							/>
-							<div>
-								<span>Bem-vindo,</span>
-								<button
-									type="button"
-									onClick={() => openPopup({ user })}
-								>
-									<strong>{user.name}</strong>
-								</button>
-							</div>
-						</Profile>
-
-						<div>
-							<Link to="/providers">
-								<BsFillPersonFill />
-							</Link>
-
-							<button type="button" onClick={signOut}>
-								<FiPower />
-							</button>
-						</div>
-					</HeaderContent>
-				</Header>
+				<Header />
 
 				<Content>
 					<Schedule>
