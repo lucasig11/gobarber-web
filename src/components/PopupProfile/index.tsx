@@ -16,6 +16,7 @@ import { usePopup } from '../../hooks/popup';
 
 import SlideMenu from '../SlideMenu';
 
+import defaultAvatar from '../../assets/avatar_gobarber.png';
 import { Container, ProfileContainer, Background, Separator } from './styles';
 
 interface PopupProfileProps {
@@ -154,7 +155,10 @@ const PopupProfile: React.FC<PopupProfileProps> = ({
 				</div>
 
 				<div>
-					<img src={userInfo?.avatar_url} alt={userInfo?.name} />
+					<img
+						src={userInfo?.avatar_url || defaultAvatar}
+						alt={userInfo?.name}
+					/>
 					<h1>{userInfo?.name}</h1>
 					<span />
 					<SlideMenu
