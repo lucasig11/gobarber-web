@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsFillPersonFill } from 'react-icons/bs';
+import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { FiPower } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
 
 				<div>
 					<Link to="/providers">
-						<BsFillPersonFill />
+						<BsFillPersonLinesFill />
 					</Link>
 
 					<button type="button" onClick={signOut}>
