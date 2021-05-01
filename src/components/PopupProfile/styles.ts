@@ -107,13 +107,15 @@ export const ProfileContainer = styled.div`
 		br {
 			line-height: 1px;
 		}
+
 		img {
 			object-fit: cover;
-			min-width: 80px;
+			width: 80px;
 			min-height: 80px;
 			border-radius: 50%;
 			margin: 24px 0 auto;
 		}
+
 		h1 {
 			font-size: 24px;
 			margin-top: 20px;

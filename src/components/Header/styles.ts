@@ -16,28 +16,10 @@ export const HeaderContent = styled.div`
 			height: 80px;
 		}
 	}
-
-	div + div {
-		display: flex;
-		flex-direction: row;
-		align-items: right;
-		margin-left: auto;
-	}
-	button,
-	a {
+	button {
 		background: transparent;
 		border: 0;
-
-		svg {
-			color: #999591;
-			margin-left: 20px;
-			width: 20px;
-			height: 20px;
-
-			&:hover {
-				color: #ff9000;
-			}
-		}
+		text-decoration: none;
 	}
 `;
 
@@ -75,4 +57,14 @@ export const Profile = styled.div`
 			}
 		}
 	}
+`;
+
+export const MenuBar = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: right;
+	margin-left: auto;
+	background-color: rgb(19, 18, 22, 0.8);
+	padding: 10px;
+	border-radius: 10px;
 `;

@@ -9,6 +9,7 @@ import ResetPassword from '../pages/ResetPassword';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Providers from '../pages/Providers';
+import Notifications from '../pages/AllNotifications';
 
 const Routes: React.FC = () => (
 	<Switch>
@@ -20,6 +21,7 @@ const Routes: React.FC = () => (
 		<Route path="/profile" component={Profile} isPrivate />
 		<Route path="/providers" component={Providers} isPrivate />
 		<Route path="/dashboard" component={Dashboard} isPrivate />
+		<Route path="/notifications" component={Notifications} isPrivate />
 	</Switch>
 );
 

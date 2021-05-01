@@ -1,18 +1,28 @@
-import React from 'react';
-import { BsFillPersonLinesFill } from 'react-icons/bs';
+import React, { useCallback } from 'react';
+import { BsBellFill, BsFillPersonLinesFill } from 'react-icons/bs';
 import { FiPower } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import defaultAvatar from '../../assets/avatar_gobarber.png';
 import logo from '../../assets/logo.svg';
 
+import MenuBarItem from '../MenuBarItem';
 import { useAuth } from '../../hooks/auth';
 import { usePopup } from '../../hooks/popup';
-import { Container, HeaderContent, Profile } from './styles';
+import { Container, HeaderContent, Profile, MenuBar } from './styles';
 
 const Header: React.FC = () => {
 	const { openPopup } = usePopup();
 	const { user, signOut } = useAuth();
+	const history = useHistory();
+
+	const handleProvidersClick = useCallback(() => {
+		history.push('/providers');
+	}, [history]);
+
+	const handleNotificationsClick = useCallback(() => {
+		history.push('/notifications');
+	}, [history]);
 
 	return (
 		<Container>
@@ -37,15 +47,24 @@ const Header: React.FC = () => {
 					</div>
 				</Profile>
 
-				<div>
-					<Link to="/providers">
-						<BsFillPersonLinesFill />
-					</Link>
-
-					<button type="button" onClick={signOut}>
-						<FiPower />
-					</button>
-				</div>
+				<MenuBar>
+					<MenuBarItem
+						title="Notificações"
+						blip
+						icon={BsBellFill}
+						onClick={handleNotificationsClick}
+					/>
+					<MenuBarItem
+						title="Prestadores"
+						icon={BsFillPersonLinesFill}
+						onClick={handleProvidersClick}
+					/>
+					<MenuBarItem
+						title="Sair"
+						icon={FiPower}
+						onClick={signOut}
+					/>
+				</MenuBar>
 			</HeaderContent>
 		</Container>
 	);
