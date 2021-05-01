@@ -39,3 +39,11 @@ export interface Credentials {
 	email: string;
 	password: string;
 }
+
+export interface INotification {
+	id: string;
+	content: string;
+	recipient_id: string;
+	created_at: string;
+	read?: boolean;
+}
