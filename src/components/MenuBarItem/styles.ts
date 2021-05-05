@@ -8,6 +8,18 @@ export const MenuItem = styled.button`
 	color: #999591;
 	text-decoration: none;
 
+	svg:hover {
+		color: #ff9000;
+
+		span {
+			display: block;
+		}
+
+		p {
+			display: none;
+		}
+	}
+
 	span {
 		color: inherit;
 		font-size: 12px;
@@ -36,16 +48,5 @@ export const MenuItem = styled.button`
 		border-radius: 50%;
 		position: absolute;
 		background-color: tomato;
-	}
-
-	&:hover {
-		color: #ff9000;
-		span {
-			display: block;
-		}
-
-		p {
-			display: none;
-		}
 	}
 `;
