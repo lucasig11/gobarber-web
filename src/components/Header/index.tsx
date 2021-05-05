@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { BsBellFill, BsFillPersonLinesFill } from 'react-icons/bs';
 import { FiPower } from 'react-icons/fi';
+import { IoHome } from 'react-icons/io5';
 import { Link, useHistory } from 'react-router-dom';
 
 import defaultAvatar from '../../assets/avatar_gobarber.png';
@@ -15,6 +16,10 @@ const Header: React.FC = () => {
 	const { openPopup } = usePopup();
 	const { user, signOut } = useAuth();
 	const history = useHistory();
+
+	const handleHomeClick = useCallback(() => {
+		history.push('/');
+	}, [history]);
 
 	const handleProvidersClick = useCallback(() => {
 		history.push('/providers');
@@ -50,7 +55,6 @@ const Header: React.FC = () => {
 				<MenuBar>
 					<MenuBarItem
 						title="Notificações"
-						blip
 						icon={BsBellFill}
 						onClick={handleNotificationsClick}
 					/>
@@ -58,6 +62,11 @@ const Header: React.FC = () => {
 						title="Prestadores"
 						icon={BsFillPersonLinesFill}
 						onClick={handleProvidersClick}
+					/>
+					<MenuBarItem
+						title="Início"
+						icon={IoHome}
+						onClick={handleHomeClick}
 					/>
 					<MenuBarItem
 						title="Sair"
