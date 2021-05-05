@@ -65,6 +65,25 @@ export const Content = styled.div`
 			text-align: left;
 		}
 
+		> span {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+			p {
+				margin: auto;
+				margin-left: 10px;
+			}
+			> svg {
+				margin: 5px;
+				float: left;
+				color: #ff9000;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+
 		a {
 			color: #f4ede8;
 			display: block;

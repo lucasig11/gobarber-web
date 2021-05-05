@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
 import { FiMail, FiLock, FiUser, FiCamera, FiArrowLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
+import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -24,13 +25,14 @@ interface ProfileData {
 	old_password: string;
 	password: string;
 	password_confirmation: string;
+	isProvider: boolean;
 }
 
 const Profile: React.FC = () => {
 	const { addToast } = useToast();
 	const { user, updateUser } = useAuth();
 	const [isLoading, setLoading] = useState(false);
-
+	const [isChecked, setChecked] = useState(user.isProvider);
 	const formRef = useRef<FormHandles>(null);
 	const history = useHistory();
 
@@ -86,6 +88,7 @@ const Profile: React.FC = () => {
 					user_id: user.id,
 					name,
 					email,
+					isProvider: isChecked,
 					...(data.old_password
 						? {
 								old_password,
@@ -120,7 +123,7 @@ const Profile: React.FC = () => {
 				});
 			}
 		},
-		[addToast, history, updateUser, user.id],
+		[addToast, history, updateUser, user.id, isChecked],
 	);
 
 	const handleAvatarChange = useCallback(
@@ -199,6 +202,21 @@ const Profile: React.FC = () => {
 					</AvatarInput>
 
 					<h1>Meu perfil</h1>
+					{isChecked ? (
+						<span>
+							<ImCheckboxChecked
+								onClick={() => setChecked(!isChecked)}
+							/>
+							<p>Você está visível como prestador.</p>
+						</span>
+					) : (
+						<span>
+							<ImCheckboxUnchecked
+								onClick={() => setChecked(!isChecked)}
+							/>
+							<p>Quero aparecer como prestador.</p>
+						</span>
+					)}
 
 					<Input name="name" icon={FiUser} placeholder="Nome" />
 					<Input name="email" icon={FiMail} placeholder="E-mail" />
