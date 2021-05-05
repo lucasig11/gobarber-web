@@ -121,12 +121,17 @@ export const Notification = styled.div<NotificationProps>`
 				css`
 					color: #ff9000;
 				`}
+
+			&:hover {
+				color: #ff9000;
+			}
 		}
 	}
 
 	p + button {
 		margin-right: 20px;
-		&:hover {
+
+		svg:hover {
 			color: #bc3737;
 		}
 	}

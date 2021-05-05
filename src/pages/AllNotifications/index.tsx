@@ -26,7 +26,7 @@ const AllNotifications: React.FC = () => {
 	const updateNotifications = useCallback(() => {
 		setLoading(true);
 		api.get('/notifications')
-			.then((response) => setNotifications(response.data))
+			.then((response) => setNotifications(response.data.reverse()))
 			.catch(() => {
 				addToast({
 					type: 'error',
