@@ -45,7 +45,7 @@ const Dashboard: React.FC = () => {
 			<Container>
 				<Header />
 				<Content>
-					<h1>Clientes e profissionais</h1>
+					<h1>Profissionais disponíveis</h1>
 					{isLoading ? (
 						<Spinner animation="border" variant="secondary" />
 					) : (

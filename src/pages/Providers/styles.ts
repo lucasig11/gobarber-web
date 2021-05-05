@@ -18,17 +18,17 @@ export const Content = styled.main`
 `;
 
 export const ProvidersList = styled.div`
-	width: 900px;
+	width: 1120px;
 	overflow-y: auto;
 	display: flex;
 
-	> div {
+	> div > div {
 		display: flex;
 		flex-direction: row;
-		align-items: center;
+		align-items: flex-start;
 		flex-wrap: wrap;
-		align-content: space-between;
-		margin: auto 0 auto 0;
+		margin: 0;
+		justify-content: center;
 	}
 `;
 
@@ -38,7 +38,6 @@ export const Provider = styled.div`
 	float: left;
 	padding: 1%;
 	margin: 20px;
-	margin-right: 10px;
 	background-color: #28262e;
 	border-radius: 10px;
 	word-wrap: break-word;
