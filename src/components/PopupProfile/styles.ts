@@ -56,7 +56,7 @@ export const ProfileContainer = styled.div`
 		align-content: space-between;
 		text-align: center;
 
-		button,
+		button:first-child,
 		a {
 			background: none;
 			border: 0;
@@ -133,6 +133,11 @@ export const ProfileContainer = styled.div`
 			padding-bottom: 5px;
 			text-align: left;
 			border-bottom: 1px solid ${lighten(0.1, '#28262e')};
+		}
+
+		button {
+			width: 70%;
+			padding: 10px;
 		}
 	}
 
